@@ -1,0 +1,3 @@
+class Ply < ApplicationRecord
+
+end
