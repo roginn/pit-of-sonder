@@ -1,19 +1,22 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  controller 'match' do
-    post '/new_game'
-    post '/join/:game_name'
+
+  controller 'matches' do
+    # post
+    get '/new_game' => :new_game
+
+    # post
+    get '/join/:game_id' => :join_game
     get  '/lobby' => :get_lobby
     post '/lobby' => :post_lobby
   end
 
-  controller 'ply' do
-    post '/current_state/:game_name'
-    post '/make_move/:game_name'
+  controller 'plies' do
+    post '/current_state/:game_name' => :current_state
+    post '/make_move/:game_name' => :make_move
   end
 
-  controller 'turn' do
-    post '/clock/:game_name'
+  controller 'turns' do
+    post '/clock/:game_name' => :clock
   end
 
 end

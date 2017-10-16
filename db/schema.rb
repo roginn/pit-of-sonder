@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171015235229) do
+ActiveRecord::Schema.define(version: 20171016013923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20171015235229) do
   create_table "matches", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "started", default: false
+    t.boolean "finished", default: false
   end
 
   create_table "players", force: :cascade do |t|
@@ -27,12 +29,18 @@ ActiveRecord::Schema.define(version: 20171015235229) do
     t.integer "juice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "match_id"
+    t.index ["match_id"], name: "index_players_on_match_id"
   end
 
   create_table "plies", force: :cascade do |t|
     t.jsonb "move"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "player_id"
+    t.bigint "turn_id"
+    t.index ["player_id"], name: "index_plies_on_player_id"
+    t.index ["turn_id"], name: "index_plies_on_turn_id"
   end
 
   create_table "turns", force: :cascade do |t|
