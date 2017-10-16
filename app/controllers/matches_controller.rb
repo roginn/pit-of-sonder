@@ -32,8 +32,6 @@
   def get_lobby
     @match = Match.first_not_started
 
-    binding.pry
-
     if @match.blank?
       return render inline: "Nobody waiting for a game to start!"
     end
