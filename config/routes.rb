@@ -7,12 +7,12 @@ Rails.application.routes.draw do
     post '/lobby' => :post_lobby
   end
 
-  controller 'ply' do
+  controller 'plies' do
     post '/current_state/:game_name' => :current_state
     post '/make_move/:game_name' => :make_move
   end
 
-  controller 'turn' do
+  controller 'turns' do
     post '/clock/:game_name' => :clock
   end
 
