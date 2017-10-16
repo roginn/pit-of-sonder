@@ -30,6 +30,8 @@ class MatchesController < ApplicationController
   end
 
   def get_lobby
+    @match = Match.first_not_started
+    render "index"
   end
 
   def post_lobby
