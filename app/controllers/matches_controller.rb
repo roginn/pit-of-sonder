@@ -10,19 +10,23 @@ class MatchesController < ApplicationController
   end
 
   def join_game
+    bot_name = params['bot_name'].to_s
+    unless bot_name.present?
+      return render json: { success: false, error: "Invalid bot name: #{bot_name}" }
+    end
+
     game_id = params[:game_id].to_i
     match = Match.find_by(id: game_id)
-    response = if match.present?
-      {
-        success: true
-      }
-    else
-      {
-        success: false,
-        error: "Match not found"
-      }
+    unless match.present?
+      return render json: { success: false, error: "Match not found" }
     end
-    render json: response
+
+    if match.started
+      return render json: { success: false, error: "Match already started" }
+    end
+
+    Player.find_or_create_by(match_id: game_id, name: bot_name)
+    render json: { success: true }
   end
 
   def get_lobby

@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
   controller 'matches' do
-    # post
-    get '/new_game' => :new_game
-
-    # post
-    get '/join/:game_id' => :join_game
+    post '/new_game' => :new_game
+    post '/join_game/:game_id' => :join_game
     get  '/lobby' => :get_lobby
     post '/lobby' => :post_lobby
   end
