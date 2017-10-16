@@ -9,6 +9,12 @@
     font-family: Helvetica;
     font-size: 20px;
   }
+  .started {
+    font-size: 100px;
+  }
+  .blink {
+    text-decoration: blink;
+  }
 </style>
 
 <h1>Match <%= @match.id %></h1>
@@ -19,7 +25,4 @@
   <% end %>
 </ul>
 
-<%= form_tag("/lobby", method: "post") do %>
-  <%= hidden_field_tag(:game_id, @match.id) %>
-  <%= submit_tag("START FUN") %>
-<% end %>
+<marquee scrolldelay="10" truespeed class="started">MATCH STARTED!</marquee>
