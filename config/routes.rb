@@ -8,12 +8,12 @@ Rails.application.routes.draw do
   end
 
   controller 'ply' do
-    post '/current_state/:game_name'
-    post '/make_move/:game_name'
+    post '/current_state/:game_name' => :current_state
+    post '/make_move/:game_name' => :make_move
   end
 
   controller 'turn' do
-    post '/clock/:game_name'
+    post '/clock/:game_name' => :clock
   end
 
 end
