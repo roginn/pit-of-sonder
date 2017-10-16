@@ -4,7 +4,7 @@ class TurnsController < ApplicationController
     game = Match.find_by(name: game_name)
     if game.blank?
       render json: {status: "game not found"}
-    else if game.ended?
+    elsif game.ended?
       render json: {status: "game finished"}
     else
       engine = GameEngine.new(game)

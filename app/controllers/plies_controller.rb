@@ -22,9 +22,9 @@ class PliesController < ApplicationController
     @game = Match.find_by(name: params[:game_name])
     if @game.blank?
       render json: {status: "game not found"}
-    else if @game.ended?
+    elsif @game.ended?
       render json: {status: "game already ended"}
-    else if !@game.started?
+    elsif !@game.started?
       render json: {status: "game has not started yet"}
     end
   end
